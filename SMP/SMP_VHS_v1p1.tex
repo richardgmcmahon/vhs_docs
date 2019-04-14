@@ -1,0 +1,1939 @@
+\documentclass{article}[11pt,twoside,titlepage]
+\ifx\pdfoptionpdfminorversion\undefined
+\else
+  \pdfoptionpdfminorversion=3
+\fi
+\textwidth=17cm
+\textheight=22cm
+\oddsidemargin=-0.5cm
+\topmargin=0cm
+\parskip=0.15cm
+\parindent=0pt
+\makeatletter
+\renewcommand{\@evenfoot}%
+        {\hfil \upshape page {\thepage} of \pageref{LastPage}}
+\renewcommand{\@oddfoot}{\@evenfoot}
+\makeatother 
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Start of revision and timestamping 
+%
+% timestamp info
+%       Current time; this may be system dependent!
+\newcount\hours
+ \newcount\minutes
+  \def\SetTime{\hours=\time
+         \global\divide\hours by 60
+         \minutes=\hours
+         \multiply\minutes by 60
+         \advance\minutes by-\time
+         \global\multiply\minutes by-1 }
+\SetTime
+\def\now{\number\hours:\ifnum\minutes<10 0\fi\number\minutes}
+% These do not quite work in Latex using \write
+\def\Now{\today\ \now}
+\def\@Now{\today\ \now}
+
+%% wjs definitions 
+\def\versdate {1.0; 05 June 07}
+\def\Ks {{\rm K_s}} 
+\def\Jone {{\rm J_1}} 
+\def\Jtwo {{\rm J_2}} 
+\def\deg {^\circ}
+\def\sqdeg {\,{\rm deg}^2} 
+\def \etal {{\em et al. }} 
+\def\simgt{\mathrel{\lower0.6ex\hbox{$\buildrel {\textstyle >}
+ \over {\scriptstyle \sim}$}}}
+\def\simlt{\mathrel{\lower0.6ex\hbox{$\buildrel {\textstyle <}
+ \over {\scriptstyle \sim}$}}}
+
+\lhead{\large \sf ESO Survey Management Plan Form:{\it VISTA Hemisphere Survey}}
+
+%\chead{\large \it VISTA Hemisphere Survey}
+\rhead{\sf Phase 1}
+\lfoot{\sf{ESO-USD (usd-help@eso.org)}}
+\cfoot{\bf Version \versdate }
+\rfoot{page {\thepage} of \pageref{LastPage}}
+\usepackage{graphicx}
+
+\begin{document}
+%
+%
+%
+%                 ESO SURVEY Management Plan LaTeX TEMPLATE 
+%                 --------------------------------
+%                              Phase 1
+% 
+%      (To compile run at least twice ``pdflatex'' on this file.)
+%
+%          Send final PDF file to: >>> visas@eso.org <<< 
+%          ------------------------------------------------
+%            DEADLINE: 15 JANUARY 2005, at 12 NOON CET
+%
+%
+
+\section{The VISTA Hemisphere Survey SMP \\ \\
+\normalsize {PI: Richard McMahon, University of Cambridge, UK (rgm@ast.cam.ac.uk)} \\
+\normalsize {Deputy/Co-PI: Andrew Lawrence, Institute for Astronomy, 
+University of Edinburgh, UK}\\ 
+\\
+{Co-I's: 
+F. Abdalla(UCL),
+D. Alexander(Durham),
+J. Alfonso(IAC),
+C. Bailer-Jones(MPIA),
+M. Balcells(IAC),
+X. Barcons(Santander), 
+D. Barrado y Navascues(Madrid),
+%P. Barthel(Gronigen),
+V. Belokurov(Cam),
+E. Bell(MPIA),
+%%J. Bauer(CTU),
+N. Ben\'{\i}tez(Granada),
+J. Bouvier(Grenoble),
+M. Bremer(Bristol),
+S. Bridle(UCL),
+L. Cairos(IAC),
+F. Carrera(Santander),
+F. Castander(Barcelona),
+E. Caux(Toulouse),
+M. Cioni(Edinburgh), 
+A. Collister(Cambridge),
+R. Crittenden(Portsmouth),
+G. Dalton(Oxford), 
+J. Davies(Cardiff),
+P. Doel(UCL),
+M. Doherty(ESO), 
+S. Driver(St Andrews), 
+A. Edge(Dur),
+E. Edmundson(Portsmouth),
+J. Emerson(QMUL), 
+J. Espinosa(IAC),
+A. Ferguson(Edin),
+E. Fern\'andez(Barcelona),
+P. Fosalba(Barcelona),
+P. Garcia(Porto),
+J. Garc\'{\i}a-Bellido(Madrid),
+F. Garzon(IAC),
+E. Gazta\~naga (Barcelona),
+B. Goldman(MPIA), 
+G. Gilmore(Cam),
+E. Gonzalez(Cam),
+N. Hambly(Edin), 
+A. Hererro(IAC), 
+P. Hewett(Cam), 
+S. Hodgkin(Cam),
+R. Ibata(Stras),
+L. Infante(PUC),
+M. Irwin(Cam),
+P. James(LJMU),
+R. Jameson(Lei), 
+M. Jarvis(Oxf),
+B. Jones(QMUL), 
+H. Jones(Herts),
+T. Kendall(Herts),
+P. Kroupa (Bonn),
+N. Kumar(Porto),
+G. Lagache(IAS),
+O. Lahav(UCL), 
+J. Lalli(UCL),
+A. Liddle(Sussex),
+N. Lodieu(IAC), 
+J. Loveday(Sussex), 
+P. Lucas(Herts), 
+R. Maartens(Ports),
+A. Manchado(IAC),
+R. Mann(Edin),
+E. Martin(IAC),
+N. Martin(Stras),
+M. Mart\'{\i}nez(Barcelona),
+J. Maza(U.Chile),
+R. Miquel(Barcelona),
+J. Miralda-Escud\'e(Barcelona),
+M. Moles(Granada),
+M. Molla(Madrid),
+J-L Monin(Grenoble),
+E. Moraux(Grenoble),
+C. Munoz-Tunon(IAC),
+T. Naylor(Exeter), 
+R. Nichol(Ports), 
+P. O'Brien(Leic)
+S. Oliver(Sussex), 
+A. Omont(IAP), 
+M. Page(UCL),
+F. Palla(Arcetri),
+J. Peacock(Edin),
+W. Percival(Ports),
+I. Perez-Fournon(IAC),
+C. Peroux(ESO),
+P. Petitjean(IAP),
+S. Phillips(Bristol)
+D. Pinfield(Herts),
+J-L. Puget(IAS), 
+S. Randich(Arcetri), 
+S. Rawlings(Oxf),
+R. Rebolo(IAC),
+M. Riello(Cam),
+H-W. Rix(MPIA),
+K. Romer(Sussex), 
+H. Rottgering(Leiden),
+M. Rowan-Robinson(IC), 
+E. S\'anchez (Madrid),
+R. Savage(Sussex), 
+R-D. Scholz(AIP),
+S. Serjeant(Open),
+T. Shanks(Dur),
+R. Somerville(MPIA) 
+G. Smith(Birm), 
+W. Sutherland(Cam),
+A. Swope(AIP), 
+N. Tanvir(Herts),
+L. Testi(Arcetri),
+B. Venemans(Cam),
+P. Viana(CAUP),
+F. Walter(MPIA),
+N. Walton(Cam), 
+S. Warren(IC),  
+M. Watson(Leic),
+N. Webb(Toulouse),
+J. Weller(UCL),
+C. Wolf(Oxf),
+H. Zinnecker(AIP) 
+D. Zucker(Cam)}}
+%%%%%%%%%%%%%%%%%%%%%% FJC
+
+\hrulefill
+
+
+
+\subsection{Abstract}
+The VISTA Hemisphere Survey(VHS) is a panoramic Infra-Red survey, which when
+combined with other large area VISTA Public Surveys (i.e. VIKING, VVV, VMC)
+will result in coverage of the whole southern celestial
+hemisphere ($\sim$20,000deg$^2$) to a depth $\sim$4 magnitudes fainter
+than 2MASS/DENIS in at least two wavebands J and $\Ks$.
+In the
+South Galactic Cap, 
+$\sim$5000deg$^2$ will be imaged deeper, including H
+band, and will have supplemental deep multi-band grizY imaging data
+provided by the Dark Energy Survey (DES). The remainder of the
+high galactic latitude sky will be imaged in YJH$\Ks$  combined
+with ugriz wavebands from the VST ATLAS survey.
+The medium term scientific goals include: a huge
+expansion in our knowledge of;
+the lowest-mass and nearest stars;
+deciphering the merger
+history our own Galaxy;
+measurement of large-scale structure out to $z\simeq1$
+and measuring the properties of Dark Energy; 
+discovery of the first quasar
+with z$>$7.
+In addition the survey will provide
+essential support for the ESA Cornerstone
+missions; XMM-Newton, Planck, Herschel and GAIA. This SMP
+has a number of issues that we would like to investigate as part of a Public Survey Science Verification phase before Public Survey observations start. 
+
+%{\bf DEADLINE: FRIDAY, 16TH FEB, NOON CST; Note we shall also get a chance to change and improve this 
+%document as part of the ESO review. The resubmission deadline is April 2nd. \\
+%Blocks of text in italics are from the ESO SMP Guidelines and will be deleted
+%before submission}
+
+
+\hrulefill
+
+\section{Survey Observing Strategy} 
+
+This section should be read in conjunction with the enclosed Excel
+spreadsheet and the three figures that show the main tabular data
+contained with this Excel spreadsheet. There is one tabular figure for
+each of the three VHS survey components described below.
+
+\subsection{Scheduling requirements}
+
+The VHS survey is divided
+into 3 components for survey planning and management and purposes,
+based on their common OB
+structures. These components in alphabetic order are:
+
+
+\begin{itemize}
+\item VHS-ATLAS ($\sim$5000 deg$^2$); consists of two regions of sky,
+  one in the north galactic cap(NGC; $\sim$2500 deg$^2$) and the
+  second in the south galactic cap ( SGC;$\sim$2500deg$^2$) to be
+  observed in YJH$\Ks$ for 60secs per waveband.
+\item VHS-DES ($\sim$4500 deg$^2$); a contiguous  region of sky in the SGC  to be observed in JH$\Ks$ for 120secs per waveband.
+\item VHS-GPS ($\sim$8200 deg$^2$);
+A region of lower galactic latitude which we define as the VHS Galactic Plane Survey(GPS) with
+$5^\circ<  |b| <30\deg$ ($\sim$8200 deg$^2$); excluding the VVV and VMC regions;
+to be observed in J and K for 60secs per waveband. 
+\end{itemize}
+
+The coverage on the celestial sphere is show in equatorial coordinates
+in figure \ref{figure:vhs_sky_overview} where the VHS can be divided
+into three contiguous regions of the celestial sphere.
+\begin{enumerate}
+
+\item  VHS-NGC(North Galactic Cap):
+$b>30^\circ$; $\delta <0^\circ$ ($\sim$2500deg$^2$);
+excluding the VIKING NGP region. This is the NGC part of VHS-ATLAS.
+Propose to start with the VST-ATLAS region, 
+Baseline exposures of 60secs per band in YJH$\Ks$.
+
+\item VHS-SGC(South Galactic Cap):
+$ b < -30^\circ$; $\delta <1.0^\circ$ ($\sim$7000 deg$^2$);
+excluding the VIKING SGP region and VMC region.
+JH$\Ks$ for 120secs over VHS-DES region on the assumption that the US led
+Dark Energy Survey(DES) project 
+will project provide matching Y and Z.  This is defined as the VHS-DES region and
+is  4500$^2$. The full DES footprint is defined below.
+YJH$\Ks$ for 60secs over the 
+remainder of the SGC starting with the region to be covered 
+with the VST ATLAS survey (note that some the VST-ATLAS survey lies within
+the VHS-DES footprint). This region is the SGC part of the VHS-ATLAS.
+\item VHS-GPS (Galactic Plane Survey): as described above. 
+\end{enumerate}  
+
+The footprint of the Dark Energy Survey(DES) consists of three connected regions in the SGC.
+\begin{itemize}
+\item $\rm 20hrs < \alpha < 7hrs$; $-65^\circ < -30^\circ$ and $\rm 19hrs < \alpha < 20hrs$; $-65^\circ < \delta <-45^\circ$; 4000deg$^2$;  South Pole Telescope(SPT) survey region
+\item $\rm 1.3hrs < \alpha < 3.4hrs$; $-65^\circ < \delta < -30^\circ$; 800deg$^2$  
+\item$\rm 20.6hrs < \alpha < 3.4hrs$; $-1^\circ < \delta <1^\circ$; 200deg$^2$;  SDSS Stripe82
+\end{itemize}
+
+The area of VHS-DES footprint is assumed to be 4500 deg$^2$ out of the full DES footprint of 5000 deg$^2$ since part of VIKING overlaps with the DES footprint as shown in  figure \ref{figure:vhs_sky_overview}.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[angle=0,scale=0.40]{vhs_overview_v7.png}
+\caption{Overview of VHS and other VISTA survey coverage(Best viewed in colour)}
+\label{figure:vhs_sky_overview}
+\hrulefill
+\end{figure}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[angle=0,scale=0.80]{Skrutskie_etal_2006_Fig_fg14h.jpg}
+\includegraphics[angle=0,scale=0.65]{Skrutskie_etal_2006_Fig_fg23h.jpg}
+\caption{Star and galaxy counts from 2MASS(Skrutskie et al, 2006) \label{figure:2mass-counts}}
+\end{figure}
+
+
+
+
+
+
+We intend to locate VHS tile field centres in a series of strips of
+constant declination(ICRS).  Tiles that completely overlap with
+VIKING, VVV or VMC will be removed. In addition, it is possible that some 
+VISTA open time observations especially if taken on the VHS tile pattern may
+satisfy some the VHS coverage requirements. A method of preventing 
+such duplication of may be worth considering. We present here two options
+for the tile spacing in the declination or Y direction; 
+\begin{enumerate}
+
+\item[(i)] In the first which is a {\it conservative} strategy we propose to use 59.0 arcmin (0.983$\deg$) in declination or Y direction as proposed by VIKING 
+which is driven by the
+footprint of the VST. Since it is intended to combine VISTA and VST
+data having a grid pattern that matches in at least one axis aids
+scientific exploitation. This tiling strategy also results in the
+minimisation of overlap of partial tiles in observing footprint for VHS and VIKING. The
+above strategy will result in an overlap of 2 arcmin between stripes
+at the full VISTA depth after adjacent VHS stripes have been
+observed. This overlap will be used for global astrometric and
+photometric re-calibration. It will also minimise the number of astronomical
+objects that are chopped in half by the edges of the VISTA field of view
+and window pane effects that is often observed in mosaiced data.
+The RA or X spacing will be 1.46$^\circ$ which
+will give 1arcmin overlap between neighbouring VISTA tiles in the same
+declination stripe. The unique area for this tiling strategy
+is $1.46^\circ \times 0.983^\circ$ = $\rm 1.435 deg^2$. This total time required using this
+strategy is shown in table~\ref{table:vhs_totaltime_1}.
+A more detailed breakdown in terms of the OB
+design is given in the enclosed spreadsheet. The main tables from the
+spreadsheet are shown in Appendix 1.  
+
+\item[(ii)] In the second case we assume a zero tile overlap strategy and assume an
+effective tile footprint of 1.636deg$^2$.  This total time required using this
+strategy is shown in table~\ref{table:vhs_totaltime_2}
+
+\item[(iii)] Since submitting the first version of the VHS SMP(v0.5) we have investigated
+the overlap strategy used by other surveys. For SDSS and 2MASS the overlap is 1' 
+along edges. The UKIDSS LAS uses an minimum overlap of 3\% 
+which is 25arcsec. 
+In practice we need to determine the number of stars objects that would be 
+detected at S/N of 10 within the overlap regions for each chip between adjacent
+tiles. Also there tend to be larger systematic uncertainties near the boundaries
+of detectors. A pragmatic approach based on
+other similar surveys is to use an overlap of  30". For this strategy the effective tile 
+size is 1.614deg$^2$ and the total time required with this tiling strategy is 3025hours. 
+We will also need evaluate whether to observe with the default PA=0 or PA=90 since observations
+at PA=90 when combined with linked OB in declination strips will minimise the difference in observing
+conditions in the half-chip overlap regions.
+
+
+\end{enumerate}
+
+The total time required for VHS assuming the 'conservative' tiling strategy of $\rm
+1.435 deg^2$ and overheads from the ETC is 3402 hours.  Thus the total time has increased from 3107 hours to 3402 hours as defined in Table\ 7 in the Sep, 2006 
+PSP-OPC submission due to the following factors:
+
+\begin{enumerate}
+\item increase in overheads due to the inclusion of a jitter in the VHS-ATLAS and VHS-GPS so that all sky regions are sampled by more than one independent pixel even in the presence of bad pixels. 
+\item overhead increase due to an increase in the number of DITS in H and K to avoid detector saturation.
+\item we have changed the effective tile size from 1.50 deg$^2$ to 1.435deg$^2$ as defined above. 
+\end{enumerate}
+
+ The increases caused by these have been offset by reducing the
+ area of the VHS-ATLAS survey from 6000 deg$^2$ to 5000 deg$^2$. This is
+ possible because, the PSP-OPC Sep, 2006 submission had some double counting 
+ between the  footprints of VIKING, VHS-ATLAS and VHS-DES.
+ 
+ In the case of a 'zero overlap' strategy the total time required is
+ 2986 hours at a cost in uniformity of the survey data. In particular
+ in the inter-tile overlap region the resultant data that would be
+ co-added would have different seeing, sky transparency, sky
+ brightness and epoch of observations.  This inter-tile overlap region
+ has a width of 5.5arcmin at the top and bottom i.e. north and south
+ edges in the default PA=0 orientation.  This would effect $\sim$10\% of the sky coverage.
+ Note that a PA=90 may be used in VHS. 
+ 
+The control of systematic uncertainties is an important science
+requirement for the large scale structure and Dark Energy science case
+which is the primary science driver for the VHS-DES region. We would
+therefore favour the conservative tiling strategy for this region. We
+request that the optimal tiling strategy in investigated during a VHS
+Science Verification phase. One intermediate tiling strategy would be
+to have a 0.5-1.0arcmin region around all 4 sides that has 100\% exposure
+overlap. A related factor is that bad pixels and other processing steps
+tend to more unreliable near the edges. These need on-sky determinations.
+
+
+
+\begin{table*}[ht]
+\caption[VHS-Total Time Survey parameters]{VHS total time per waveband assuming an effective tile size of 1.435 deg$^2$}
+\label{table:vhs_totaltime_1}
+\begin{centering}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+Sub-Survey&deg$^2$&Y&J&H&K&Total\\ \hline
+VHS-ATLAS &5000&284&284&296&296&1160\\
+VHS-DES   &4500&-&423&434&434&1290\\
+VHS-GPS   &8200&-&466&-&485&951\\
+\hline
+Total Elapsed&17,700&284&1074&729&1215&3402\\
+\hline
+Total Science&     &174 &774&488 &774 &2209\\
+\hline
+Efficiency(\%) &       & 61	 &66	&67	&64	&65     \\
+\hline
+\end{tabular}
+\\
+\begin{flushleft}
+{\footnotesize
+Notes: 
+(i) We have assumed that ATLAS is extended beyond 4500deg$^2$ current 3 year
+goals and a total area for VHS-ATLAS of 5000deg$^2$. 
+(iI) DES will cover 5000deg$^2$ but we assume that 500deg$^2$ overlaps
+with VIKING.
+(iii) We have recomputed the combined area covered by VHS-DES and VHS-ATLAS and
+it is 9,500 deg$^2$ compared with 10,500 deg$^2$ in the original proposal. 
+We have therefore
+reduced the VHS-ATLAS footprint from 6000 deg$^2$ to 5,000 deg$^2$.
+Some of the VST-ATLAS region lies within the VHS-DES region.}
+\end{flushleft}
+\end{centering}
+\end{table*}
+
+
+
+
+\begin{table*}[ht]
+\caption[VHS-Total Time Survey parameters]{VHS total time per waveband assuming an effective tile size of 1.636 deg$^2$}
+\label{table:vhs_totaltime_2}
+\begin{centering}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+Sub-Survey &deg$^2$&Y&J&H&K&Total\\ \hline
+VHS-ATLAS  &5000&249&249&260&260&1018\\
+VHS-DES   &4500&	&371&381&381&1132\\
+VHS-GPS   &8200&	&409&    &426 &	835\\
+\hline
+Total Elapsed&17,700&249&1030&640&1066&2986\\
+\hline
+Total Science&     &153	&679 &428 &679&1939\\
+\hline
+Efficiency(\%) &       & 61	 &66	&67	&64	&65     \\
+\hline
+\end{tabular}
+\\
+\begin{flushleft}
+{\footnotesize
+Notes: see notes to table \ref{table:vhs_totaltime_1}.}
+\end{flushleft}
+\end{centering}
+\end{table*}
+
+
+
+
+\begin{table*}[ht]
+\caption[VHS Survey Top Level survey region Priorities by RA]
+{VHS Survey Top Level survey region Priorities by RA}
+\label{table:vhs_priorities}
+\begin{centering}
+\begin{tabular}{|l|c|c|c|}
+\hline
+ &\multicolumn{3}{|c|}{\bf Priority} \\ 
+\hline
+RA   &1 & 2& 3 \\
+\hline
+00-01 & DES & ATLAS & \\
+\hline
+01-02 & DES & ATLAS & \\
+\hline
+02-03 & DES & ATLAS & \\
+\hline
+03-04 & DES & ATLAS & \\
+\hline
+04-05 & DES & ATLAS & \\
+\hline
+05-06 & DES & ATLAS & GPS \\
+\hline
+06-07 & DES & ATLAS  &GPS \\
+\hline
+07-08 & GPS & & \\
+\hline
+08-09 & GPS & & \\
+\hline
+09-10 & ATLAS & GPS & \\
+\hline
+10-11 & ATLAS & GPS & \\
+\hline
+11-12 & ATLAS & GPS & \\
+\hline
+12-13 & ATLAS & GPS & \\
+\hline
+13-14 & ATLAS & GPS & \\
+\hline
+14-15 & ATLAS & GPS & \\
+\hline
+15-16 & ATLAS & GPS & \\
+\hline
+16-17 & GPS &  & \\
+\hline
+17-18 & GPS &  & \\
+\hline
+18-19 & GPS &  & \\
+\hline
+19-20 & GPS &  & \\
+\hline
+20-21 & DES & ATLAS & GPS \\
+\hline
+21-22 & DES & ATLAS & GPS \\
+\hline
+22-23 & DES & ATLAS & \\
+\hline
+23-24 & DES & ATLAS & \\
+\hline
+\end{tabular}
+\\
+\begin{flushleft}
+{\footnotesize
+Notes: These are the top level priorities between the VHS survey
+components. Additional finer grained priorities as a function
+of declination and/or galactic latitude are also planned.}
+\end{flushleft}
+\end{centering}
+\end{table*}
+
+VHS has fields over the full RA range when all three components are
+considered so that the survey can be carried out in all months of the
+year. VHS also has a fields over the full range of declinations so that
+fields should be available in the presence of all wind direction constraints.
+Due to the wide declination range at all RA, there should also always
+be fields that are sufficiently far from the ecliptic that moon avoidance 
+does not restrict scheduling.   
+
+In Table \ref{table:vhs_priotities} we show the RA distribution of
+the priority of each survey component.  In addition we shall supply
+finer grained priorities for specific regions of sky within each
+survey e.g. by declination stripe for the VHS-DES and VHS-ATLAS
+components or galactic l, b in the case of VHS-GPS with seeing limits that take into account
+stellar confusion. 
+
+Following the PSP recommendation we propose to complete the
+survey in 10 periods over 5 years. 
+In Table
+\ref{table:vhs_ObservingTimeByPeriod} 
+we summarize the time required
+per period.  Initially we ask for an evenly divided spread in time in
+each period. It is possible that this may need amending after a few
+periods have passed.
+The distribution of observing time request with period over the
+first 10 Periods is given in Table
+\ref{table:vhs_ObservingTimeByPeriod} assuming a total of 10 periods for
+the whole survey. The original submission assumed a survey start
+in P79. Here we assume a start in P80( Oct'07-Mar'08).
+
+
+
+
+Each tile will be observed only once in each waveband. For all the
+surveys we require that a minimum of two wavebands 
+are observed with a time interval between bands of no more that 30 minutes
+so that the effects of short term variability are minimised and  
+that moving objects can be identified.
+Therefore the separate wave bands will be observed via
+concatenated OBs as follows:
+\begin{itemize}
+\item VHS-ATLAS; Y and J concatenated; H and K concatenated [same strategy as
+  UKIDSS LAS]
+\item VHS-DES; H and K concatenated and J unconcatenated or all three concatenated or with a goal to
+observe within 1hr of the concatenated HK OBs.
+\item VHS-GPS; J and K concatenated OBs
+\end{itemize}
+
+Another requirement on OB links is that in the IR, the sky has to
+subracted and we will require a minimum of 2 tiles in order to
+determine the sky that has to be subtracted from each observation.
+Thus in  Y, J H and K we will need to concatenate two tiles
+in each waveband. The elapsed time per tile per waveband is
+shown in Table \ref{table:vhs_time_per_tile}. The total time,
+for a group of concatenated OBs ranges from 972 secs for the DES J band
+observations, 1200secs for ATLAS and GPS to 1792 secs for the DES HK 
+concatenated observations of two adjacent tiles. 
+
+In the case of the VHS-ATLAS survey concatenated YJ  Obs will
+be observed during grey/dark time and concatenated HK OBs will be observed
+during any observing conditions. The concatenated OBs should be
+observed ideally within 1 month. A goal  would to be observe all wavebands in
+a tile within 6 months otherwise long term variability will reduce the
+scientific value of the multi-colour data. 
+
+Other observing priority drivers that may require intervention during
+an observing period are caused by the link with the VST ATLAS
+survey. We would like to increase the OB priority for VHS tiles that
+are for regions of sky that have already been observed by
+VST-ATLAS. These priorities will be updated at the start
+of each observing period but it may be desirable to alter
+OB priorities during an obserging period on a monthly basis.
+
+
+\begin{table*}[ht]
+\caption[VHS Observing Time by Period]{VHS Observing Time Request by
+Observing Period}
+\label{table:vhs_ObservingTimeByPeriod}
+\begin{centering}
+\begin{tabular}{|c|ccccll|}
+\hline
+Period & Time (h) & Mean RA  & Moon & Seeing & Transparency  & Comment\\
+\hline
+%%%P79(Apr'07 - Sep'07) & 256 (JH$\Ks$s) & 18h & any & $<$1.4 & THIN, CLEAR &\\
+%%%P79(Apr'07 - Sep'07) & 55 (YJ) & 18h  & grey   & $<$1.4 & THIN, CLEAR
+%%%& \\
+%%%
+P80(Oct'07 - Mar'08) & 256 (JH$\Ks$)& 06h  & any & $<$1.2,1.4 & THIN, CLEAR &\\
+P80(Oct'07 - Mar'08) & 55 (YJ)& 06h  & grey   & $<$1.2,1.4 & THIN,CLEAR &\\
+\hline
+%%%
+P81(Apr'08 - Sep'08) & 256 (JH$\Ks$) & 18h  & any   & $<$1.2,1.4 & THIN, CLEAR & Planck, Herschel launch\\
+P81(Apr'08 - Sep'08) & 55 (YJ)& 18h  & grey & $<$1.2,1.4 & THIN,
+CLEAR &\\
+\hline
+%%%
+P82(Oct'08 - Mar'09) & 256 (JH$\Ks$) & 06h  & any   & $<$1.2,1.4 & THIN,
+CLEAR &Planck, Herschel reach L2\\
+P82(Oct'08 - Mar'09) & 55 (YJ)& 06h  & grey & $<$1.2,1.4 & THIN, CLEAR&\\
+\hline
+%%%
+P83(Apr'09 - Sep'09) & 256 (JH$\Ks$) & 18h  & any   & $<$1.2,1.4 & THIN,
+CLEAR & \\
+P83(Apr'09 - Sep'09) & 55 (YJ)& 18h  & grey & $<$1.2,1.4 & THIN, CLEAR
+&\\
+\hline
+%%%
+P84(Oct'09 - Mar'10) & 256 (JH$\Ks$)& 06h  & any   & $<$1.2,1.4 & THIN, CLEAR
+& WISE launch\\
+P84(Oct'09 - Mar'10) & 55 (YJ)& 06h  & grey & $<$1.2,1.4 & THIN,CLEAR &\\
+\hline
+%%%
+P85(Apr'10 - Sep'10) & 256 (JH$\Ks$)& 06h  & any   & $<$1.2,1.4 & THIN, CLEAR
+& \\
+P85(Apr'10 - Sep'10) & 55 (YJ)& 06h  & grey & $<$1.2,1.4 & THIN,CLEAR &\\
+\hline
+%%%
+P86(Oct'10 - Mar'11) & 256 (JH$\Ks$)& 06h  & any   & $<$1.2,1.4 & THIN, CLEAR
+& DES starts on CTIO 4m\\
+P86(Oct'10 - Mar'11) & 55 (YJ)& 06h  & grey & $<$1.2,1.4 & THIN,CLEAR &\\
+\hline
+%%%
+P87(Apr'11 - Sep'11) & 256 (JH$\Ks$)& 06h  & any   & $<$1.2,1.4 & THIN, CLEAR
+& \\
+P87(Apr'11 - Sep'11) & 55 (YJ)& 06h  & grey & $<$1.2,1.4 & THIN,CLEAR &\\
+\hline
+%%%
+P88(Oct'11 - Mar'12) & 256 (JH$\Ks$)& 06h  & any   & $<$1.2,1.4 & THIN, CLEAR
+& \\
+P88(Oct'11 - Mar'12) & 55 (YJ)& 06h  & grey & $<$1.2,1.4 & THIN,CLEAR &\\
+\hline
+%%%
+P89(Apr'12 - Sep'12) & 256 (JH$\Ks$)& 06h  & any   & $<$1.2,1.4 & THIN, CLEAR
+& \\
+P89(Apr'12 - Sep'12) & 55 (YJ)& 06h  & grey & $<$1.2,1.4 & THIN,CLEAR &\\
+\hline
+%%\multicolumn{1}{|l|}{End of 10 p} &
+%%\multicolumn{6}{|l|}{Above pattern continues until survey is finished}
+%%\\ \hline
+\end{tabular}
+\end{centering}
+\end{table*}
+
+
+\subsection{Observing requirements}
+
+The science goals require that we cover the whole southern sky in a
+minimum of two wavebands and ZYJH$\Ks$ and over the high galactic
+latitude sky. In the first instance Z will come from the VST ATLAS
+survey and/or the CTIO DES project. The DES project will also provide Y
+band data over the DES footprint. 
+We assume 1.2" seeing as measured on VIRCAM images at the VISTA focal
+plane in each
+filter and 5sigma detection limits in a 2arcsec diameter aperture.
+Baseline exposure times of 60 seconds in all  bands are assumed
+except over the DES region where 120secs in JH$\Ks$ are used.
+
+Because of potential variables we ideally wish to get at least two
+filters observed within 30 minutes of each other by
+having them in concatenated OBs. For example studies of the variability
+in a 4Myr-old OB association by Naylor (priv comm) finds that more
+than 1 percent of the stars have varied by more than 0.05 mags
+within 2 hours. So if you are looking for rare objects, say if you
+expect 1 in a hundred stars to deviate from some colour relationship
+by 0.05 mags, a time separation of 2 hours destroys such a study
+because 1$\%$ will have varied by that amount in 2 hours. 
+
+%So in fact
+%you want to take the two different colours within about 20 minutes,
+%to avoid variability confusing the finding of rare objects. Of
+%course other types of object /region vary more or less but this
+%argument is indicative of the importance of quasi simultaneous
+%filters. [The SDSS and 2MASS observing strategies ensured this in
+%their cases]
+
+%But for the increased Y background in bright time we would do
+%a tile in all filters for each which would fit within a one hour OB.
+Experience with WFCAM on UKIRT indicates that the increased sky
+background at bright time in Y is significant.
+OBs containing Y will be carried out away from bright time. Grey
+time should be sufficient. In dark time, Y band observations
+may be dark current limited so there may be little to gain scientifically
+from the use of dark time.
+%OBs containing J H and K$_s$ can be carried out even in bright time.
+
+There is little speed to be gained in shortening exposure times much
+below 60secs since overheads such as detector read out, disk i/o and
+telescope motion and noise sources such as read-out noise start to
+dominate.  We will carry out a 2-point jitter for each
+observations. Thus in principle in the absence of detector defects,
+all pixels in a single tile from 6 exposures each sky pixel have up to
+4 independent detection pixels and in the presence of bad pixels the
+majority have 3 or more independent detections. However a 1-point
+jitter would result in many regions of sky only having a single pixel
+detection.
+ 
+
+
+\begin{table*}[ht]
+\caption[VHS Elapsed time(secs) per tile]{VHS Elapsed time(secs) per single tile}
+\label{table:vhs_time_per_tile}
+\begin{centering}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+ &\multicolumn{4}{|c|}{Time(secs) per singe tile} \\ 
+ &\multicolumn{4}{|c|}{Elapsed(Exposure)} \\ 
+ \hline
+Sub-Survey  &Y     &J     &H    &$\Ks$ \\ \hline
+VHS-ATLAS   &294(180) &294(180) &306(180)&306(180)\\
+VHS-DES     &        &486(360) &498(360)&498(360)\\
+VHS-GPS     &        &294(180) &     &305(180)\\
+\hline
+\end{tabular}
+\\
+\begin{flushleft}
+Notes: 
+(1) The time per tile is 3 times the exposure time on sky due to the sparse filled VIRCAM mosaic. 
+(2) The elapsed times only include the overheads included in the VISTA ETC
+for a tile and do not include the time required to point the telescope as referred to in RIX\#2.8 
+\end{flushleft}
+\end{centering}
+\end{table*}
+
+\subsubsection{Overview of the OBs characteristics}
+
+Our baseline plan is that  observations use standard 6 pointing tiles which gives two observations per
+sky pixel with two jitters at each pointing.  This produces 4 observations per
+sky pixel neglecting the effect of bad pixels. The duration of a single waveband per tile OB is 
+given in Table \ref{table:vhs_time_per_tile}. The elapsed time per tile is in the range
+$\sim$300--500 seconds ($\sim$5--7 minutes).
+
+All OBs or groups of concatenated OBs will have a total time less than 1 hour in
+duration. 
+We require two adjacent tiles in the same waveband to be observed
+consecutively in order
+to determine a robust sky. Current ESO rules  allow  1 tile or pointing per OB. 
+Therefore currently each OB is a single tile in a single waveband and we will
+concatenate two OBs with the same filter together. Alternatively, a double-tile could be defined
+within an OB using a pointing centre and 11 offset positions.  Naively this may save 
+overheads with little impact in OB schedulability  but there may be subtle issues
+such as the offset vectors may not be parallel near the poles for both tiles. 
+
+Concatenated groups of OB with two tiles in multiple wavebands  have an estimated 
+elapsed duration in the range 1000 to 2000 seconds although this uncertain due the
+uncertainties in the observing overheads. Shorter groups of
+concatenated OBs are possible by reducing the number of adjcent tiles
+per concatenated OB. 
+
+Based on VDFS WFCAM experience in order to make a robust
+estimate of the sky a minimum of two tiles are required per filter.
+If the two-tile per concatenated OB requirement is
+relaxed shorter blocks of concatenated OBS will result. 
+The trade-off in schedulability versus quality of the science products will need to be determined.
+
+
+\paragraph{VHS-ATLAS; 2 adjacent tiles in 2 wavebands}
+The total integration time per waveband is 60 seconds in each
+of four wavebands;
+Y, J, H,K. Normally 2 adjacent tiles in RA on the same Dec stripe
+will be observed consecutively in the same filter. The
+filter will then be changed and two of the filters observed via
+concatenated OBs. Concatenated groups of OBs will either contain observations in YJ or HK.  
+The order of the fYJ filters will always be YJ. 
+The order of the filters in the HK concatenated OBs will either 
+be H$\Ks$ or 
+$\Ks$H to take advantage of the fact that $\Ks$ can be observed during 
+astronomical twilight. i.e $\Ks$ will be observed before H in evening twilight and
+H will be observed before $\Ks$ in morning twilight. 
+
+\paragraph{VHS-DES; 2 tiles and 1 or 2 concatenated wavebands}
+The total integration time per waveband is 120 secs in three
+wavebands; J, H,K. Normally two adjacent tiles in RA on the same Dec
+stripe will be observed consecutively in the same filter in concatenated
+OBs. The H and K observations shall be concatenated to minimise the
+effects of variability and to identify moving objects.
+The order of the filters in the HK concatened OBs will either 
+be H$\Ks$ or 
+$\Ks$K to take advantage of the fact that $\Ks$ can be observed during 
+astronomical twilight. 
+The HK and J observations should be observed within
+1 month.
+
+\paragraph{VHS-GPS; 2 tiles in 2 wavebands}
+The total integration time per waveband is 60 secs in two wavebands; J, K. Two adjacent tiles will be observed consecutively in the same filter in each group of
+concatenated OBs.
+The order of the filters will either be JK or KJ in order to take advantage of the fact that
+K can be observed during astronomical twilight. In regions of high stellar density and or regions
+with large spatial variations linked offset-OBs may be required to determine the sky background. In
+the early stages of VHS we will attempt to avoid such regions.
+
+
+\subsubsection{Order of wavebands for OBs and concatenated OBs}
+
+In order to maximise the usable time during a nominal Paranal night we note the
+following sky brightness observations and trends. In YJH the sky maybe  too bright during twilight for useful science
+observations. In K science useful observations can be obtained during twilight. 
+In YJH the sky gets darker during the night as the OH 'relaxes'.
+Analysis of the sky brightness trends by Riello(2007, ESO Calibration
+workshop) shows that the measured K band sky brightness as observed with UKIRT WFCAM on Mauna Kea, during both evening and morning period  between
+nautical(12degee) and astronomical(18degree) twilight  is not significantly brighter that
+the night time value. Therefore in blocks of multi-filter concatenated OBs  $\Ks$ should be observed first during evening twilight and last in the morning twilight. In principle this gains up to 30 minutes of twilight time for science observing each night. This means that the OB order in concatenated OBs will have to be updated periodically
+for fields that are observable during twilight. 
+
+Below we consider some other filter order suggestions for each VHS component.
+
+\paragraph{VHS-ATLAS}
+YJ generally in second half of night and avoiding twilight. KH order
+in evening with K observations starting within astronomical twilight. HK order in morning twilight with K observations possible during astronomical twilight.
+
+\paragraph{VHS-DES}
+If all three bands as linked, the order could be KHJ in first half of night with K observations possible during evening astronomical twilight. JH$\Ks$ in last quarter of the night with K within dawn twilight. 
+
+\paragraph{VHS-GPS}
+Normally we will observe tiles first in K and then the same group of tiles in
+J except that in final hour of night the order should be reversed to that science observations
+can be carried out in K during twilight.
+
+\subsubsection{THIN and SEEING constraint}
+Since a prime science goal is to make the depth as uniform
+as possible we shall want to avoid observing in BOTH the worst permissible seeing
+AND in thin conditions so THIN will have a seeing limit of 1.2 whereas
+in general CLEAR will have seeing limit of 1.4. 
+
+We would  like to explore in the future the option of increasing the 
+integration time by 50-100\% in THIN conditions. This would impact on the
+total time required. The actual impact would depend on the fraction of
+observations  observed in THIN conditions and the observing overheads. 
+This increase in time  would be partially compensated for by a reduction in the fraction of 
+OBs that would have to be reobserved.
+
+\subsubsection{Link between SKYBRIGHTNESS, THIN and SEEING constraints}
+
+The UKIDSS survey strategy includes the ability to increase the integration time
+of observations when the combined observed conditions would result in
+observations that would fail the magnitude limit science requirements. 
+An option to increase the exposure time by 50\% or 100\% may be useful if
+we find that a significant number of OBs tail to reach the magnitude limits required
+in mediocre conditions. 
+
+This is predominantly a problem in the shorter wavebands
+compared with K band which shows the smallest range in sky brightness. However
+on particularly warm nights during the Paranal summer it may be worth considering 
+increasing the K band exposures. We note that the increase in total observing time 
+will not be linear when overheads are taken into account. 
+
+We accept that
+that at present ESO policies for Service Mode Observations (which will apply
+to VISTA observing) the exposure cannot be adjusted at the telescope (Rix\#2.3).  
+
+\subsubsection{Very bright stars and galaxies; see also response to  Rix\#2.6}
+
+We are concerned about the effects of very bright stars in terms of affecting 
+sky frames and persistence. In Figure \ref{figure:2mass-counts} we reproduce
+star and galaxy counts from 2MASS (Skrutskie et al, 2006AJ....131.1163S).
+We may want to avoid the  brightest stars that have a surface density of 
+1 per 100deg$^2$ e.g. $\Ks$$<$4
+in the VHS footprint
+during the first period of survey operations so that we can quantify the
+effects caused by such stars for the pipeline and detectors.  
+A possible strategy would
+be to observe these tiles at the end of the night so that their
+impact on subsequent observations is minimised. Similarly we would like
+to quantify the quality of the pipeline reduction for galaxies larger than a quarter 
+of a chip which corresponds to $\Ks$$<$8 and which have a surface density of $\sim$0.01deg$^{-2}$
+i.e. 1 per 60 tiles.
+
+We request that some very bright stars and large galaxies are observed during a Science 
+Verification phase to that their effects are quantified. Apart from persistence effects,
+such observations will quantify scattering and ghost effects if significant. It may be worth observing 
+a bright star on 
+all chips so that any chip to chip variation can also be quantified. 
+
+
+
+\subsubsection{Global strategy}
+In any period we will supply OBs with the same 
+seeing requirements in adjacent stripes i.e. $<$1.2" or  $<$1.4" in groups of
+5 stripes on the basis that on average 10 equatorial stripes will be observed per year or
+3500deg$^2$. We will provide OBs for 7000 deg$^2$ as a pool with half at a higher
+priority than the other. Half the OBs will be in the North i.e $\delta >-25^\circ$ and half in the South  i.e $\delta <-25^\circ$so that any wind direction constraint can be accommodated.
+
+
+\subsection{PA orientation of VISTA camera}
+We have not decided whether observations will be at PA=0 or PA=90. A choice of PA=90
+is being considered in order to minimise the time time difference and hence observing condition
+variation between adjacent tiles that require inter-tile overlap stacking due to the half-chip step size
+in the intra-tile mosiacing.
+
+\begin{figure}[ht!]
+\centering
+%\includegraphics[angle=0,scale=0.70]{wfcampipe.pdf}
+\vspace*{-1.0cm}
+\includegraphics[angle=0,scale=0.19]{vircam_jit_micro_pro_v3.jpg}
+\caption{A block diagram showing the pipeline processing from raw data to
+the calibrated product. \label{figure:vdfs-pipeline}}
+\end{figure}
+
+
+\section{Survey data calibration needs}
+\label{sec-cal} 
+
+We anticipate that the standard VISTA calibration plan will be
+adequate for VHS observations.
+We refer to the Calibration Plan, Ref.~[01], 
+the proposed draft for the VISTA Calibration plan  available at 
+www.vista.ac.uk/vdfs/esoqc1/ for further details, 
+but summarise the main that are most relevant to VHS here:   
+
+\subsection{Instrumental signature removal} 
+\label{sec-ins} 
+
+
+Ref. [01] specifies the basic instrument 
+ calibration frames (dark frames, reset frames, 
+ dome flats and linearity calibration, twilight flats) which 
+ will be available as part of the VISTA standard operating procedure, 
+ mainly from daytime and twilight procedures. 
+\begin{itemize} 
+\item Dark frames: one set for each typical DIT value 
+ expected to be taken  approximately weekly during daytime and
+ daily during the initial operations phase of VISTA.
+\item Dome flats: one set expected to be taken weekly during daytime, 
+   (primarily for detector health checks and logging of bad pixels). 
+\item Linearity frames: these comprise sets of dome flats 
+ with stable illumination spanning a wide range of 
+  different exposure times. We anticipate a set of linearity frames will
+ be taken every few months, and after any major maintenance on the
+  IRACE detector controllers. 
+\item Twilight flats will be taken in several filters nightly. 
+  (There is likely to be insufficient twilight time 
+  to obtain twilight flats in all science 
+  filters every night, but a cyclic ordering should get twilight 
+  flats in all filters every 2 nights, with priority given
+  to those pass-bands most used recently) .  
+%\item ``Touchstone'' fields will be observed approximately
+%two-hourly each night.  A network of suitable non-crowded 
+%fields, either 2MASS touchstone fields or UKIRT faint standards, 
+% will be set up spaced at 2-hour RA intervals both North
+%and South of the zenith (see Ref. [01]). 
+ \end{itemize}   
+
+We note here that both the VISTA dome and VIRCAM dark filter
+ have excellent light-tightness by design (in fact, VIRCAM 
+ can take dark frames in a normally-lighted lab), so
+ daytime darks and dome flats should not have significant leaks. 
+ This will be checked during VISTA commissioning. 
+
+\subsection{Astrometric calibration} 
+\label{sec-astrom} 
+
+The basic astrometric procedure is a 2-stage calibration: 
+ firstly, a radial distortion correction  
+ of the form 
+ $$ 
+ r_{\rm lin} = r + k_3 r^3 + k_5 r^5  
+ $$ 
+ is fitted, where $r$ is image radius (in mm), 
+ $k_3$ and $k_5$ are distortion coefficients, 
+  $r_{\rm lin}$ is a linearised radius proportional
+ to $\tan \theta$, where $\theta$ is angle from the pointing axis ;
+ this form is an excellent fit to real 
+ distortion in axisymmetric systems.  
+The distortion parameters $k_3, k_5$ will be  calculated within the VDFS pipeline on regular time basis 
+ based on fitting to a stack of a large 
+ number of independent frames of moderately high stellar density.
+
+ For individual VIRCAM frames a catalogue of bright unsaturated
+  stars is matched to 2MASS
+ using the approximate pointing information in the FITS headers
+ as a start-point. 
+ The radial 
+ distortion correction is applied to give linearised
+ coordinates $x_l,y_l$ for each measured object,  
+ then a standard 6-parameter ``plate constant'' 
+ solution is performed,  of the form 
+ $$ 
+  \xi = ax_l + by_l + c \, \qquad  \eta = dx_l + ey_l + f 
+ $$
+ where $\xi, \eta$ are standard warped tangent-plane coordinates
+ with respect to the telescope pointing axis.  
+ This allows for pointing error, rotation, scale change and shear.
+ The coefficients $a \ldots f$ are fitted with a robust fit
+  to minimise observed-predicted residuals on a per-detector basis. 
+ The above astrometric solution will then be stored 
+ in the Multi-extension FITS headers in the ICRS system, 
+ using the  {\tt ZPN} notation to handle the distortion. 
+
+ This procedure is very similar to that used currently for
+  WFCAM data, which is demonstrated to give residuals
+ over the whole field to less than 0.1 arcsec systematic
+ and $0.1$ arcsec random rms (with the latter limited by 2MASS random
+  errors at its moderate SNR $\sim 10$). 
+
+While VISTA has a larger absolute distortion term, 
+we anticipate that astrometric stability across the
+ VISTA focal plane is likely to be at least as good or probably
+  better than equivalent WFCAM results, for several reasons: 
+\begin{enumerate} 
+\item VIRCAM covers $3 \times$ the area of WFCAM per single pawprint, 
+  giving correspondingly more useful 2MASS stars per frame. 
+\item  VISTA's detectors are firmly attached to a common CTE-matched 
+  mounting plate,  rather than held in ZIF sockets, 
+\item  VIRCAM's corrective lenses are closer to the focal plane 
+   than WFCAM's, reducing relative flexure.   
+\item The chromatic aberration in VIRCAM is smaller.  
+\end{enumerate}   
+
+ Additional efforts such as monitoring trends in VIRCAM-2MASS residuals
+ over many frames and long timescales may be capable of
+  reducing systematics further below the 0.1 arcsec level , 
+ but this is outside the scope of the current VHS
+ plans. 
+
+\subsection{Photometric calibration} 
+\label{sec-phot} 
+
+
+
+The VHS survey does not require the hourly observations of standard stars as described on 
+page 31 in Section 5.4 of the v1.4pre1 of the VDFS VIRCAM calibration plan. The VHS requirement is to photometrically calibrate VIRCAM data to 2\%. 
+
+VHS photometric calibration will use 2MASS to carry out the photometric calibration
+ of each VHS tile in YJHK using the 2MASS JHK  stellar photometry following the VDFS
+  procedures developed for the WFCAM instrument and the UKIDSS LAS survey by 
+  Hodgkin et al(in preparation). 
+  The requirement on VDFS is to photometrically calibrate 
+  WFCAM and VIRCAM data to 2\%. 
+  Nikolaev et al. (2000) claim that the 2MASS all-sky point-source catalogue has photometry that is globally consistent to 1%. 
+
+For photometry, the standard instrumental signature removal 
+of Section~\ref{sec-ins} 
+  corrects for dark current, non-linearity, bad pixel masking, 
+ flat-field variations  does an internal gain correction to put all
+ detectors onto a uniform internal system.  
+
+After this, there are in principle three independent 
+ routes to photometric calibration: 
+\begin{enumerate} 
+\item Matching to 2MASS stars, with suitable colour equations.   
+\item Using the nightly standards (for photometric nights) 
+\item Global solution using matching of overlapping tiles.  
+\end{enumerate} 
+
+The main photometric calibration will be (a) 2MASS, 
+ with method (b) used as a check and (c) applied
+ in the longer term when sufficient overlaps are available.  
+
+ Each VIRCAM pawprint will contain over 100 useful 2MASS
+ stars (SNR $> 10$ in 2MASS, and also unsaturated in the VHS frames),
+ corresponding to e.g. $13 \simlt J \simlt 15$.  
+
+As part of the general VDFS VIRCAM calibration procedure, colour equations 
+ transforming the 2MASS system to the VIRCAM system will be derived
+  of the form 
+ $$ J_t = J_2 + C_J (J_2 - H_2) , \quad H_t = H_2 + C_H (H_2 - K_2) , 
+  \ldots $$
+ where $J_2$ etc is 2MASS magnitude, $J_t$ is transformed to 
+ the VISTA filter system, 
+  and the colour terms $C_J, C_H, C_K$ will be derived from fitting
+ to a large number of frames and subsequently held fixed. 
+
+For routine reductions, 
+  the above colour equations with fixed coefficients give
+ a transformed magnitude $J_t, H_t, K_t$ in the VISTA system for
+ each 2MASS star.  
+
+ Then due to the internal gain calibrations only a single zero-point for each pawprint is needed, 
+  e.g. 
+ $$ J_{cal} = J_{ins} + ZP_J - e_J (X - 1) , $$ 
+ where $J_{ins} = -2.5 \log_{10}(ADU/{\rm sec})$ 
+  is the raw VIRCAM instrumental 
+ magnitude, $ZP_J$ is the zeropoint, $e_J$ (normally fixed)
+ is the extinction coefficient, $X$ is airmass  and $J_{cal}$ is the 
+  calibrated VIRCAM magnitude on a standard system e.g. Vega. 
+ Thus,  fitting $J_{ins} - e(X-1)$ vs $J_t$ 
+ should give a line of slope 1, intercept $ZP_J$ and small scatter
+ due to 2MASS random errors and colour residuals;  
+ both of which average down in the final $ZP_J$.  
+  
+ This assumes that the 2nd order colour term from 2MASS to 
+ VIRCAM magnitude,  and the colour-dependence of extinction, 
+ are both negligible: these are generally a good approximation
+  in the near-IR where most stars have relatively smooth spectra.   
+ Errors in the assumed extinction coefficients cancel to first
+ order since they give an opposite error in $ZP$ 
+  (if a per-frame zeropoint is adopted).   
+ Also, this method is robust against isolated 2MASS errors, 
+  since any single VISTA tile overlaps with a large number
+ of distinct 2MASS stripes. 
+
+ If a night is photometric, the instrument response is
+ stable and the extinction term is correct, 
+  then all frames in the $i$th passband should give the same value of 
+ ZP$_i$ .  Analysing trends with time or airmass can reveal 
+  non-photometric nights, long-term drift in throughput or gain 
+ (e.g. dust accumulation on the optics or IRACE gain drift ) 
+   or errors in the assumed extinction coefficient.  The VDFS CASU pipeline 
+   also computes and monitors detector level variations in the zeropoints 
+   as a measure of the photometricity of the observations.
+ 
+ \subsubsection{ Y band calibration}
+ 
+For the Y band, the situation is slightly
+ more complex since there are no direct 2MASS measurements. 
+(z-band combined with 2MASS J will be investigated as a proxy; z-band from SDSS  available in some of the DES region, and $z$-band data will
+ exist soon in the SGP from the Australian Skymapper project). 
+ As a first pass, we intend to use the well-defined stellar
+ locus to bootstrap from 2MASS J,$\Ks$ to Y band calibration as used for WFCAM
+ calibration within the VDFS pipeline.
+ 
+The Y filter will be calibrated using 2MASS JHK stellar photometry following the procedures developed for the WFCAM instrument and the UKIDSS LAS survey by Hodgkin et al(in preparation). 
+See also http://casu.ast.cam.ac.uk/surveys-projects/wfcam/technical/photometry.
+Independent checks on 2MASS based Y calibration will be carried out using the Skymapper z band photometric survey and 2MASS J band via interpolation.
+
+\subsubsection{Illumination and geometric correction} 
+ As a final step in photometric calibration, an ``illumination 
+ correction''  
+  will be applied to correct for the fact that
+ a standard flat-fielding procedure does not lead to precise photometry, 
+ due to two effects: firstly 
+  distortion leads to varying pixel areas, 
+  and secondly stray-light forms an {\em additive} and 
+  roughly axisymmetric background offset. 
+ The illumination correction will be a position-dependent offset
+ calculated from either stacked residuals vs 2MASS, and/or 
+  mesostepped frames across the touchstone fields. 
+
+\subsection{Bad pixels}
+\label{sec-bad-pixels} 
+
+The effects of the bad pixel regions will be recorded in the VDFS confidence maps and detected sources that are in the vicinity of spatially fixed artifacts can be flagged in the source catalogues.  
+
+
+\subsection{Star galaxy discrimination calibration}
+\label{sec-star-galaxy} 
+
+We request that VHS depth exposures are obtained in the COSMOS field and CDFS-GEMS fields as part of the science verification phase of VISTA. These fields have HST images that can be use to calibrate the reliability of star galaxy classification in VISTA.
+
+Our backup plan is to use SDSS and other spectroscopic classifications.  For instance SDSS used the COMBO survey classifications see: 
+http://www.sdss.org/dr5/products/general/stargalsep.html
+
+
+\section{Data reduction process}
+\label{section:datared} 
+
+We will use the VISTA Data Flow System (VDFS, Emerson et al, 
+2004, 2006, Irwin et al, 2004; Hambly et al, 2004 ) 
+ for all aspects of data processing and archiving.
+  The Cambridge
+  Astronomical Survey Unit (CASU) at Cambridge will be responsible
+ for pipeline processing, 
+ and first-level calibration, 
+ and the Wide Field Astronomy Unit (WFAU) at Edinburgh 
+ will be responsible for the Science Archive with both a human and 
+ and a VO interface with query facilities, data export capabilities 
+ and creation of higher-level products e.g. list-driven photometry.  
+For a more detailed description of this system see 
+ {\tt http://www.maths.qmul.ac.uk/\~{ }jpe/vdfs/}, 
+ and { \tt http://casu.ast.cam.ac.uk/ } (CASU), and 
+ {\tt http://www.roe.ac.uk/\~{ }nch/wfcam/ } (WFAU).
+ 
+Both the VDFS pipeline and archive facilities have been 
+designed specifically for VISTA, and have already been scientifically
+ verified by processing wide-field near-IR imaging from 
+ UKIRT's WFCAM imager, at routine rates up to 250GB/night. 
+Versions of the pipeline have also been used to process 
+ ESO ISAAC data, and data from a wide range of optical CCD mosaic 
+ cameras. Sample from the UKIDSS project are published in 
+ Warren et al (2007MNRAS.375..213W),
+ Dye et al (2006MNRAS.372.1227D),
+ Lawrence et al (2006, MNRAS submitted, astro-ph/0604426) 
+ Venemans, McMahon et al (2006, MNRAS, 2007MNRAS.376L..76V,
+ astro-ph/0612162)
+
+We note here that VHS is a close analogue of the UKIDSS Large Area
+survey and the VDFS has been used successfully for this for
+almost two years already. There are already various papers
+on astro-ph that have used UKIDSS LAS data successfuly.
+
+The uniformity of photometric zero points across the whole survey area and the
+global astrometry will be checked and verified independently by
+both the VDFS and VHS teams. They will be checked by the VHS team via comparison with 2MASS and also via a comparison of photometry and astrometry for sources that are detected in more than one tile. e.g. using the tile overlap regions
+
+
+%The only untried aspect is the intra-tile stacking and mosaicing that is required
+%for VISTA.
+The data reduction will be using the VDFS, operated by the VDFS
+team, and augmented by effort  from the VHS co-Is, their postdocs and
+graduate students, especially for Quality Control and Assurance of the VDFS
+products. We also note the considerable synergy between the science goals
+and the data products from VHS and VIKING survey. McMahon and Sutherland aim
+to collaborate on the development of automated QA procedures for the two surveys.
+In addition the VHS QA teams will work closely with the VDFS pipeline and science
+archive groups.
+
+\begin{table*}[ht]
+\begin{centering}
+\caption[Responsibilities]{Responsibilities and Group Leaders}
+\label{table:vhs-team}
+\begin{tabular}{|l|c|c|c|}
+\hline
+Name & Function & Affiliation & Country  \\
+\hline
+R. McMahon & PI and OB Preparation& Cambridge& UK\\
+A. Lawrence& Deputy/Co-PI& Edinburgh& UK\\
+J. Emerson & VDFS PI and OB Preparation&Queen Mary, London& UK \\
+CASU (VDFS) team$\dagger$& Pipeline processing and QC& Cambridge  & UK \\
+%CASU (VDFS) team$\dagger$& Data Quality Control-I& Cambridge  & UK \\
+WFAU (VDFS) team$\ddagger$& Science Archive and QC & Edinburgh & UK  \\
+%WFAU (VDFS) team$\ddagger$& Data Quality Control-II & Edinburgh & UK  \\
+N. Walton& VO Standards &  Cambridge & UK  \\
+&   &  &  \\ 
+\hline
+\multicolumn{4}{|c|}{\bf VHS Survey Progress, Data Quality Control and Assurance} \\
+\hline
+R. McMahon &OB Preparations and Survey Progess WG leader& Cambridge &UK\\
+R. McMahon & Data Quality WG leader&Cambridge & UK  \\
+H-W Rix & Data Quality WG leader&MPIA, Heidelberg & D  \\
+R. Rebolo& Data Quality WG leader&IAC, Tenerife & S  \\
+F. Castander& Data Quality WG leader&Barcelona & S \\
+ &   &  &  \\ 
+\hline
+\multicolumn{4}{|c|}{\bf VHS Survey specific tasks} \\
+\hline
+%%TBD        &OB Preparation Working Group & &\\
+%%TBD        &Survey Progress Working Group & &\\
+T. Naylor  &VISTA Surveys photometry cross-calibration WG &Exeter&UK\\ 
+%%TBD        & Astrometry Working Group && \\
+%%TBD        & Galaxy Photometry Working Group &&\\
+%%TBD        & Stellar Photometry Working Group &&\\
+F. Castander &DES Cordination Working Group &Barcelona&S\\
+F. Carrera & XMM-Newton Working Group &Santander &S \\
+C. Bailer-Jones & GAIA Working Group  &MPIA &D\\
+J. Emerson & Photometric Calibration WG &Queen Mary, London& UK\\
+S. Oliver  & Herschel Working Group   &Sussex&UK\\
+G. Lagache & Planck Working Group &IAS, Paris &F\\
+H. Rottgering & LOFAR and radio surveys WG&Leiden&NL\\
+N. Lodieu  & Galactic Cluster Working Group  &IAC&S   \\
+%%TBD        & Nearby Galaxy Working Group && \\
+K. Romer       & Galaxy Cluster Working Group &Sussex &UK \\
+%TBD        & Solar System  Working Group && \\
+\hline
+\end{tabular}
+\begin{flushleft}
+Notes:
+$\dagger$~The CASU (VDFS) team is currently led by Irwin who is a VHS co-I.
+$\ddagger$~The WFAU (VDFS) team is currently led by Hambly who is a VHS co-I.
+\end{flushleft}
+\end{centering}
+\end{table*}
+
+
+\subsection{Pipeline processing}
+\label{sec-pipe-proc} 
+
+
+The VDFS pipeline is a modular design allowing alternative configurations of
+the processing components depending on the on-sky system 
+performance of VIRCAM. Standard processing in Cambridge is on a 
+nightly basis with data products defined by the overall OB structure.  
+
+The VDFS pipeline at CASU will perform all the processing steps for instrumental signature
+removal and catalogue generation for the VHS Tiles. The pipeline includes the following
+steps and is schematically shown in Figure \ref{figure:vdfs-pipeline}.
+
+\begin{itemize}
+\item instrumental signature removal -- bias, non-linearity,dark, flat,
+    fringe, cross-talk, systemic noise;
+\item sky background tracking and removal using all relevant OBs during a
+    night; this may include extra homogenisation during image stacking and
+    mosaicing to incorporate removal of unexpected 2D systematic effects
+    from imperfect multi-sector operation of detectors;
+\item assessing and dealing with image persistence from preceding
+    exposures if necessary (and if possible);
+\item  combining frames if part of an observed dither sequence or tile pattern;
+\item producing a consistent internal photometric calibration to put
+    observations on an approximately uniform system;
+\item image catalogue generation including astrometric, photometric, shape
+    and Data Quality Control (DQC) information;
+\item  final astrometric calibration based on the catalogue with an appropriate
+    World Coordinate System (WCS) placed in all FITS headers - the default
+is to base this on 2MASS;
+\item photometric calibration for each generated catalogue using 2MASS or
+    augmented by monitoring of suitable pre-selected standard
+    areas covering the entire field-of-view to measure and control
+    systematics;
+\item all frames and catalogues supplied with astrometric and photometric
+    calibration information and detected object morphological classification
+    embedded in FITS files;
+\item bad pixel handling, propagation of error arrays and effective exposure
+    times by use of confidence maps;
+\item  realistic errors on selected derived parameters for images and
+catalogues;
+\item nightly extinction measurements in relevant passbands;
+\item pipeline software version control -- version used recorded in FITS
+header;
+\item processing history including calibration files recorded in FITS headers.
+\end{itemize}
+
+The pipeline processing centre hosts a data quality database that
+is updated daily with the data quality control information for
+pipeline processed products. The UKIDSS WFCAM version is available
+at http://casu.ast.cam.ac.uk/.
+
+Calibration library frames i.e. darks, flats are built with a significant amount of
+human checking. Basic quality control (e.g. rejection of frames with serious cloud,
+tracking/guiding failures, EMC interference, other hardware
+problems, Moon problems) will also be carried out at this stage using mainly automated
+procedures based on standardised QC parameters compared with 'typical' values. Warnings will be generated if they lie outside an approved range 
+(see section \ref{section:qa} for more details).
+
+\subsection{Science Archive} 
+\label{sec-pipe-arch} 
+
+The VISTA Science Archive (VSA) at WFAU is modeled on the WFCAM
+ Science Archive. The VSA will ingest the metadata and catalogue outputs from pipeline processing into
+a relational database management system, and will then curate the FITs images
+and catalogues and derived products to produce enhanced 
+ database-driven products.  
+
+The functions carried out by VSA will include: 
+
+\begin{itemize} 
+\item Band merging of the single waveband catalogues to provide multi-colour source lists 
+i.e. JH$\Ks$ in the VHS-DES region; JK in the VHS-GPS region and YJH$\Ks$ in the VHS-ATLAS region.  
+\item List-driven photometry to provide upper limits of objects detected in one waveband but undetected in other wavebands.
+\item Quality control features and metadata, as defined and agreed by the VHS 
+   team in collaboration with the VDFS team. 
+\end{itemize} 
+ 
+The VSA will have a user-friendly interface based on SQL queries;
+ both simple and advanced interfaces are available, with the simple
+ interface for ease of use while the advanced interface exposes
+ the full relational database structure to the user enabling
+ more complex queries and manipulation. 
+
+\section{Human resources  and hardware capabilities devoted to data reduction and quality assessment}
+
+
+\begin{table}[!ht]
+%\begin{centering}
+\caption[Responsibilities]{VHS Committed Effort}
+\label{table:vhs-team-effort}
+\begin{tabular}{ll}
+\\
+{\bf IOA, Cambridge} & Node leader and PI: Richard McMahon \\
+%Number of co-Is: &99 \\
+Yearly FTE commitment:   &  1.5 [excludes CASU commitment]\\
+Tasks  &   Quality assurance, OB preparation, Survey progress \\
+Scientific focus & Quasars and AGN, Galactic structure, Planck, GAIA \\
+\\
+{\bf Barcelona} & Node leader; member of VHS management Board: Francisco Castander \\
+%Number of co-Is: &99 \\
+Yearly FTE commitment:   &  2.0 \\
+Survey Tasks  &   Quality assurance, OB preparation, Catalogue validation, \\
+           & Galaxy photometry and incompleteness, DES coordination \\
+Scientific focus & Large scale structure of the Universe, Quasars and active galaxies, Planck, \\
+  & Photometric redshifts, Galaxy clusters\\
+\\
+{\bf IAC, Tenerife} & Node leader; member of VHS management Board: Rafael Rebolo \\
+%Number of co-Is: &99 \\
+Yearly FTE commitment:   &  3.0 \\
+Survey Tasks  &   Quality assurance, OB preparation, Astrometry, Catalogue validation, \\
+     &Galaxy photometry and incompleteness,  Multi-waveband merging \\
+Scientific focus & Quasars and active galaxies, low mass stars, starbursts, \\
+&GTC follow-up,  multi-wavelength surveys, galaxy clusters, photometric redshifts. \\
+\\
+{\bf MPIA, Heidelberg} & Node leader; member of VHS management Board: Hans-Walter Rix \\
+%Number of co-Is: &99 \\
+Yearly FTE commitment:   &  2.0 \\
+Survey Tasks  &   Quality assurance, OB preparation, Galaxy photometry, Stellar photometry \\
+Scientific focus & Galaxy evolution, Galactic structure, GAIA \\
+\\
+{\bf Queen Mary, London} & Node leader; member of VHS management board: Jim Emerson \\
+%Number of co-Is: &99 \\
+Yearly FTE commitment:   &  1.0 \\
+Survey Tasks  &   Quality assurance, OB preparation, Artifact quantification, Stellar photometry\\
+%%& Photometric calibration, Stellar confusion, Multi-waveband merging, Catalogue validation \\
+Scientific focus & Galactic structure, Low mass stars, Large scale structure of the Universe \\
+\\
+{\bf CAUP, Porto}  & Node leader:  M. S. Nanda Kumar \\
+%Number of co-Is: &99 \\
+Yearly FTE commitment:   &  1.0 \\
+Survey Tasks  &   Quality assurance,  Photometric calibration, Stellar photometry, Stellar confusion \\
+Scientific focus & Star forming regions, Embedded and Open Clusters, Low mass stars, Galaxy clusters \\
+%&Far-infra red survey science; e.g. WISE, AKARI, X-ray surveys, Galaxy clusters \\
+\\
+{\bf Portsmouth} & Node leader: Bob Nichol\\
+%Number of co-Is: &99 \\
+Yearly FTE commitment:   &  1.5 \\ 
+Survey Tasks  &   Quality assurance, DES coordination, photometric calibration, galaxy photometry \\
+Scientific focus & Large scale structure of the Universe, ISW, Photometric redshifts \\
+\\
+{\bf Sussex} & Node leader: Kathy Romer \\
+%Number of co-Is: &99 \\
+Yearly FTE commitment:   &  1.0 \\
+Survey Tasks  &   Multi-band catalogue validation, Galaxy photometry and incompleteness \\
+Scientific focus & Cluster of galaxies, Large scale structure of the Universe,
+Galaxy stellar mass functions \\
+\\
+{\bf UCL, London}& Node leader: Ofer Lahav \\
+%Number of co-Is: &99 \\
+Yearly FTE commitment:   &  1.5 \\
+Survey Tasks  &   Galaxy photometry,  DES coordination \\\
+Scientific focus & Large scale structure of the Universe, Photometic redshifts \\
+\end{tabular}
+%\begin{flushleft}
+%Notes:
+%\end{flushleft}
+%\end{centering}
+\end{table}
+
+
+
+
+%\end{table}
+
+\subsection{Team Members}
+\label{section:team}
+
+The full list of VHS team members  is given on page 1 of this document. Table~
+\ref{table:vhs-team} lists the members of the VHS collaboration who currently have
+specific responsibilities within the VHS collaboration. These members will work with other members of the collaboration  supplemented with effort from post-docs and graduate students to deliver the 
+agreed VHS science products to ESO. 
+
+The VHS team is large but has a few nodes that have a critical mass in terms
+of experience and number of co-Is. Some specific groups and group leaders
+are listed below: 
+\begin{itemize}
+\item Barcelona(ICE, IFAE, CIEMAT); Castander
+\item Cambridge(IOA); McMahon
+\item Edinburgh (IFA); Lawrence
+\item Heidelberg(MPIA); Rix
+\item London (QMUL); Emerson
+\item Tenerife(IAC); Rebolo
+\end{itemize}
+The six named individuals are members of the VHS Management Board.
+
+
+McMahon, Lawrence and Emerson are co-I's of the VDFS project. 
+A number of the VHS co-I's were members of the team who worked on the early phases of the SDSS. e.g. Castander, Loveday, Nichol. They have considerable experience in wide field survey image and catalogue quality assurance. 
+The VHS team also consists of members of the ESO community who are
+members of the UKIDSS consortium who have have involved in the 
+UKIDSS LAS survey. The VHS team also include the PIs of four other
+VISTA public surveys (Jarvis, Cioni, Lucas, Sutherland) and this will 
+facilitate the exchange of quality control and assurance
+best practice between the projects. 
+
+A number of major institutes have multiple co-I
+and thus will have the local critical mass. These co-I's will lead independent
+ but coordinated Quality Control and Assurance working groups i.e. MPIA, Heidelberg, Rix et al; Barcelona, Castander et al; Rebolo et al, IAC; McMahon et al, Cambridge.
+Data quality control and assurance will be a distributed task across the consortium within
+four working groups working semi-independently with some tasks replicated. It will
+be coordinated by the four group leaders who will meet via Telecon with others leading
+QA taks on a monthly basis when the data starts to flow. 
+Other members of the collaboration will work with these teams. 
+
+
+%The  observation planning  team  is  a  sub-set  of  the  Data
+%Processing  and Quality  control  teams. They  are responsible for
+%generating the OBs using the Survey Area Definition Tool and P2PP
+%and for revising these and monitoring survey progress using a local
+%Data Quality Control database as necessary.
+
+Experience shows that the a full data scientific validation is only
+possible when people start trying to do science with the data. Thus in addition to the
+quality assurance working groups 
+we will also have a number of Scientific Working groups 
+(following the themes of the goals listed in the science objectives). 
+Table~\ref{table:vhs-team} lists the
+current set of exemplary groups.  Any data quality problems
+found by these teams will be passed to one or more of the quality control working 
+groups as required. 
+
+
+
+
+\subsubsection{VHS committed effort}
+
+In Table \ref{table:vhs-team-effort} we list the effort that has been committed by the members of he VHS to the project. Only nodes that
+have committed 1.0 or more FTEs are listed. OB preparation will be cordinated by McMahon and Emerson with
+effort also from Heidelberg, Barcelona and Tenerife. The total effort commited
+to the task is 1.0 FTE per year.  
+
+\subsection{VDFS human resources and hardware capabilities}
+
+The VDFS UK pipeline will be used to process all data taken on VISTA.
+Based on 2 years of experience at running the WFCAM processing pipeline,
+CASU have estimated their human resource requirements to carry out the tasks
+outlined
+above in section \ref{sec-pipe-proc}  as 3 FTE.  This includes normal processing, quality control, reprocessing after
+major bug fixes and/or enhancements, system maintenance and upgrades, and
+liaison with major users.
+
+Hardware CPU requirements for the Cambridge processing pipeline are
+specified
+to have an overcapacity of a factor of at least 3 (to allow for the
+inevitable
+variations of data flow rates and reprocessing requirements).  Data storage
+will be purchased as required and all raw and processed files will be stored
+using lossless Rice tile compression to save a factor of ~4 in hardware
+requirements.
+
+Manpower provision at the VDFS Edinburgh science archive centre currently
+stands at 2.0 FTE dedicated operations staff and around 1.0FTE of
+astronomer-scientist management, oversight and systems support. Hardware
+provision for storage of pipeline-processed science product files,
+database server catalogue storage and associated web servers and other
+infrastructure is currently funded, via a rolling grant, to 2010 and is
+renewed every two to three years.
+
+
+\section{Data quality assessment process} 
+\label{section:qa}
+\label{sec-qc} 
+
+The assessment of data quality is
+ is a 3-stage process: a quick assessment is performed
+ at Paranal, then following VDFS pipeline processing a second 
+ stage (QC-I) performed by VDFS,  
+ and the final stage(QC-II) before general 
+ data release is the responsibility of the VHS team. 
+ These stages are outlined in more detail below. 
+
+
+\subsection{VHS Data quality assessment and control process}
+
+The VHS PI will be the primary point of contact between the VHS collaboration and
+the overall VDFS project. In addition VHS will identify individuals who 
+will be the primary day to day point
+of contact at each of the two main components of the VDFS;
+(i) the VDFS-Pipeline at CASU, Cambridge and (ii) the VDFS Science
+Archive  at WFAU, Edinburgh.
+The VHS team will define and agree in
+consultation with the VDFS team(s), QC criteria that can be applied to
+the VDFS VISTA dataproducts in advance of preparing data releases to the ESO
+SAF.
+
+The QC criteria and thresholds will be communicated to the VDFS via the VHS
+consortium primary point of contact. In practice the QC work
+may involve one of more individuals from the VHS consortium
+working closely in-situ for a period with one or both of the two VDFS groups.
+
+Within the VDFS project considerable effort has gone into automated QC parameter
+generation
+in the pipeline design, (see the Data Reduction Library Design v1.6
+available
+at http://www.vista.ac.uk/vdfs/esoqc1/)
+for further information). The most basic version of the QC
+process occurs in near-time on Paranal, while more sophisticated
+versions will be run in Garching and later in Cambridge.  All of the
+Cambridge pipeline QC information will be available to VHS Quality Assurance
+teams via a QC database
+in Cambridge (for an example see
+http://casu.ast.cam.ac.uk/surveys-projects/wfcam/data-processing/)
+and is also recorded in the data product FITS headers.
+
+The VHS  quality control process will include the requirement  to
+identify obvious datasets where the pipeline has under performed in some
+clear manner and feeding information back to the CASU group so that an
+investigation of what went wrong can be put in place.  If the pipeline is
+clearly at fault then early reprocessing with modified pipeline components
+will take place.
+
+The quality control process will also consist of identifying datasets
+where the observations were carried out incorrectly, ie. appropriate
+calibration files were not available, or in bad conditions.  Such datasets that
+cannot be fixed by altering the pipeline and may need to be reobserved
+with appropriate changes to the observing strategy.
+Note that the catalogue generated QC information will help to pick out these
+cases but some level of visual inspection will also be planned for.
+The VDFS WFCAM pipeline DQC and survey progress graphical interface is
+available here: http://casu.ast.cam.ac.uk/survey-progress/wfcam/.
+
+
+The Archive quality control process itself consists of a data
+modification script coded up manually by the VDFS science archive staff
+based on the QC criteria specified by the EPS consortium.
+Quality Control issues currently
+implemented in the WFCAM Science Archive can be viewed at this URL:
+http://surveys.roe.ac.uk/wsa/www/gloss\_d.html\#lasdetection\_deprecated.
+Example QC plots and further information can be found in Dye et al.,
+MNRAS, 372, 1227 (2006) and Warren et al., 2007MNRAS.375..213W)
+
+
+
+\subsection{VDFS quality control} 
+\label{sec-qc1} 
+
+ In the VDFS pipeline, considerable effort has gone into
+ the design of automated QC parameters which are generated
+ automatically during the reductions and compared with 
+ typical ranges. 
+ All of the CASU pipeline QC information will be made available
+ to the VHS team via a web-based QC interface 
+ (for an example, see Ref.~[05] )  
+ and these QC parameters are also recorded in the FITS headers. 
+ 
+A complete list of QC parameters are available in Ref.~[02] Appendix~A , 
+ while some examples include: 
+\begin{itemize} 
+\item Pointing differences between blind telescope pointing
+  and final calibrated WCS. 
+\item  Mean sky level and rms noise. 
+\item Number of objects classified as ``noise''. 
+\item Saturation level (from bright stars) 
+\item  Mean FWHM and ellipticity for objects classified as ``stellar''. 
+\item Aperture correction (fraction of stellar flux outside 2 arcsec). 
+\item Photometric zeropoint from 2MASS
+\item Photometric zeropoint from nightly standards  
+\item Stellar magnitude limit (computed from the above). 
+\end{itemize} 
+
+In order to maxmise the legacy value of the VHS survey the VHS team plans to produce an  online Explanatory Supplement modeled on the 2MASS Explanatory Supplement (http://www.ipac.caltech.edu/2mass/releases/allsky/doc/explsup.html)
+
+
+\subsection{VHS team quality control} 
+\label{sec-qc-team} 
+
+Additional tests that may be done at both the post-pipeline and post-archive stage  
+by the VHS QC team,  include the following:  
+
+\begin{itemize} 
+
+\item Low resolution tile background images binned
+at 32x32 pixels to produce 406x512 pixels images which can be eyeballed
+initially and used to develop and train objective machine based techniques with possible
+human intervention as required.
+
+\item Tile level dot plots that show the spatial distributions of stars and galaxies and 
+noise objects. 
+
+\item Tile level spatial distributions of matched and unmatched objects from the multi-colour band merging.
+
+\item Colour counts and median colours as a function of magnitude for each tile and compared with template results.
+
+
+\item Additional checks of QC parameters generated by the pipeline,
+   to look for low-level effects or trends which may not trigger the automated
+   warnings.  
+
+\item Inspection of colour-colour and colour-magnitude diagrams at a single Tile level
+   In general stars and galaxies lie on distinct sequences in near-IR 
+  colour-colour space, with most stars forming a relatively
+  tight locus, so inspection of these plots plus morphological
+ classification forms a powerful check for many systematic errors 
+ (see Ref~[06] for examples).  
+
+\item Masking of defects:  
+ Localised image problems are usually apparent by inspection of dot-plots, 
+ especially for objects of unusual colours. Localised problems creating 
+  significant numbers of spurious images 
+  (such as diffraction spikes, aircraft or satellite trails, 
+  bright-star ghosts etc)  are readily apparent. 
+
+Based on early experience, we will create an 
+ automated masking and flagging around bright stars, i.e. flag a
+ magnitude-dependent radius around each bright star.  
+ 
+\item Overlap matching.  The VHS conservative tiling strategy will provide significant
+ edge overlaps $\sim 2$ arcmin wide at the North and South 
+  edges of each tile, containing $> 100$ objects
+  per overlap. 
+  Thus, comparison of image parameters 
+  for objects duplicated in the overlap regions will 
+ provide a strong check of most 
+ systematic errors (with the exception of centre-to-edge systematics which will be
+ investigated via the stacking of residuals from mean properties).  
+ Larger samples are available from the 'wings' 
+  5.5 arcmin wide with full exposure in one tile and half in the other. 
+ 
+\end{itemize} 
+ 
+During the early stages of the public survey all images and catalogue
+products will be visually verified by the VHS team. The goal is develop 
+and train machine learning based techniques that require only human intervention
+in the case of 1-2\% of tiles. 
+
+The VHS quality assurance will be divided up into a range of tasks that will then
+be managed by the QA team. Some specific tasks that are planned in addition to
+the list above are:
+
+\begin{enumerate}
+\item Independent source catalogue generation\item  Source catalogue validation\item  Astrometry\item  Star-galaxy separation\item  Photometric calibration \item  Stellar photometry\item  Stellar confusion \item  Stellar incompleteness\item Galaxy photometry\item  Galaxy incompletness\item  Multi-waveband merging \item  Artifact characterisation and quantification
+\end{enumerate}
+
+ 
+\section{Data product and VO compliance:}
+\label{sec-dataprod} 
+
+The VHS products that will be delivered to the ESO SAF are listed below.
+All products will be FITS images or tables with metadata contained
+within the FITs headers to fufil the ESO VO requirements as defined
+in http://www.eso.org/observing/ps/VOS-RRD.pdf.
+The VDFS will be used able to deliver flat FITS images and catalogues on a tile
+basis to the ESO Science Archive Facility as follows:
+
+\begin{enumerate}
+\item[(a)]  Tile based survey quality-controlled pipeline processed products:
+instrumentally corrected stacked science frames along with their associated
+single-passband catalogue detection lists, all photometrically and
+astrometrically calibrated from 2MASS. 
+
+\item[(b)] The catalogue products
+are defined in the VDFS document VDF-SPE-IOA-00009-0001v4(Irwin, 2007) and is available at this URL:
+ http://www.ast.cam.ac.uk/~rgm/vhs/smp/WFCAM-catalogues-v4p0.pdf. The extraction parameters were initially developed as part of the science requirements analysis by the UK community for the VISTA pipeline and the UKIDSS surveys. The PI and many other  members of the VHS team were involved in both these processes. In the case of the UKIDSS surveys the ESO community has also been involved. 
+
+The current set of parameters will be reviewed during the period when VHS is being carried out, to ensure that the VHS parameter set are consistent with the parameter sets for VST ATLAS and DES.   
+
+\item[(c)] Confidence maps, dark frames and flat fields used in the production of (a).
+
+\item[(d)] Tile based associated source catalogues linking the parameters of individual objects across all of the observed filter bands.
+
+\item[(e)] Aperture matched photometry and aperture based upper limits for sources detected in (a).
+
+\end{enumerate}
+
+All available metadata will be included in the FITS headers.
+The VHS data will be delivered from the 
+VSA to the ESO Science Archive via the Internet.
+
+\section{Timeline delivery of data products to the ESO archive:}
+\label{sec-delivery} 
+
+Raw VISTA data is normally expected to arrive in the UK 
+roughly 2-3 weeks days after the observations are taken.
+The turnaround time for ingesting  and verifying the raw data is 
+expected to be normally another working week assuming no significant problems. 
+CASU estimate that when a steady state is reached for the data
+processing normally data will have been pipeline processed
+and QC checked by CASU within 3-4 working weeks of successful 
+data ingest. Data will then be available for VHS quality assurance and
+transfer to the Vista Science Archive in Edinburgh with secure data access
+provided to the VHS quality assurance teams.
+
+Normally during the steady state, VHS expects that it will deliver the
+agreed survey data products using the VDFS to the ESO Science Archive
+before the end of the semester following the one in which the raw data
+were delivered to CASU.
+
+Based on recent experience from the SDSS and UKIDSS projects we 
+anticipate that a longer delivery period will be required 
+for at least the first full semesters and possibly also for the second
+full semester.  We therefore wish to make
+provision for a more extended quality control and analysis
+period by the VDFS and VHS teams during the first year of public survey
+operations and to allow for a VDFS reprocessing
+phase with improved software parameters 
+to correct problems discovered in the first-look analyses of the
+data from the first period of observations. We also request the
+provision of survey science verifiation phase where a series observations
+can be carried out so that observing strategy can be optimised.
+ 
+ We estimate that the data products from the first period 
+ of VHS observation data could be delivered to ESO not more
+ than one year later than the end of the first full period i.e. by the end of the
+ third observing period. There
+ would then be a 'catch up' phase with a goal of delivering the 2nd period of
+ observations during the 4th period and the 3rd period of 
+ observations  by the end of the 4th period and thereafter we would follow
+ the one period for data delivery model.
+ 
+ Thus for example, 
+ assuming VHS observations start in period 80, the delivery of
+ period 80 data would be by the end of period 82. Period 81 data would
+ be delivered sometime during period 83 and period 82 by the end of
+ period  of period 83. 
+ This will clearly be somewhat in advance of a presumed
+ 2-year review which would nominally be carried out during period 84.
+ If required we could release a subset of the first period of data
+ earlier in the form of an 'Early Data Release' which is a model
+ which has been used by successfully by 2MASS, SDSS and UKIDSS.
+This would consist of a small representative set of data. 
+For example 2MASS released a single night of data from the night of
+1997 November 16 a year later on 1998 Dec 8. They then had their
+first major release of data covering data data between
+1997 June  and 1998 January  in 1999 May.
+The content and
+delivery plan for the VHS Early Data Release could be timed so that feedback from this data could be used for
+one of the the 6 monthly progress reviews. 
+ 
+
+
+
+\section{References}
+\label{sec-ref} 
+
+[01]    P. Bunclark and S. Hodgkin. 
+  ``VISTA Infrared Camera Calibration Plan'',  
+  VIS-SPE-IOA-20000-0002, v1.4, 2006/11/13.  
+  \\
+
+[02]   J. Lewis, P. Bunclark, S. Hodgkin., 
+  ``VISTA Data Reduction Library Design'', 
+  VIS-SPE-IOA-20000-0010, v1.6, 2006/12/20. 
+  \\ 
+
+[03] "VISTA Data Flow System: Status"
+Jim Emerson, Mike Irwin, Nigel Hambly
+in Observatory Operations: Strategies, Processes, and Systems,
+edited by David R. Silva, Rodger E. Doxsey, Proc. of SPIE Vol. 6270, 30, 2006 \\
+
+"VISTA Data Flow System: Overview"
+Jim Emerson, Mike Irwin, Jim Lewis, Simon Hodgkin, Dafydd Evans, Peter Bunclark, Richard McMahon, Nigel Hambly, Robert Mann, Ian Bond, Eckhard Sutorius, Michael Read, Peredur Williams, Andrew Lawrence, Malcolm Stewart
+in Observatory Operations: Strategies, Processes, and Systems,
+eds David R. Silva, Rodger E. Doxsey,Proc. of SPIE Vol. 5493, 401, 2004 \\
+
+“VISTA data flow system:  pipeline processing for WFCAM and VISTA”,
+Irwin, Bunclark, Evans, Hodgkin, Lewis, McMahon, Emerson, Beard, Stewart,
+in Optimizing Scientific Return for Astronomy through Information Technologies, eds Quinn \& Bridger, Proc of SPIE, 5493, 411, 2004 \\
+“VISTA data flow system: survey access and curation: the WFCAM science archive”,
+Hambly, Mann, Bond, Sutorius, Read, Williams, Lawrence, Emerson,
+in Optimizing Scientific Return for Astronomy through Information Technologies, eds Quinn \& Bridger, Proc of SPIE, 5493, 423, 2004 \\
+
+
+[04] {\tt http://www.vista.ac.uk/vdfs/esoqc1/ } \\
+
+[05] {\tt http://casu.ast.cam.ac.uk/surveys-projects/wfcam/data-processing/ },
+
+[06] Dye, S. et al, 2006, MNRAS, 372, 1227. 
+
+
+
+
+%\newpage
+\section*{Appendix 1: Spreadsheet tables}
+
+
+\begin{figure}[ht!]
+\centering
+\vspace*{-2.0cm}
+\includegraphics[angle=0,scale=0.85]{VHS_obs_spreadsheet_v3p0_ATLAS.pdf}
+\vspace*{-3.0cm}
+\caption{VHS-ATLAS observation requirements\label{figure:vhs_obs_atlas}}
+\end{figure}
+
+
+\begin{figure}[ht!]
+\centering
+\vspace*{-2.0cm}
+\includegraphics[angle=0,scale=0.85]{VHS_obs_spreadsheet_v3p0_DES.pdf}
+\vspace*{-3.0cm}
+\caption{VHS-DES observation requirements \label{figure:vhs_obs_DES}}
+\end{figure}
+
+
+
+\begin{figure}[ht!]
+\centering
+\vspace*{-2.00cm}
+\includegraphics[angle=0,scale=0.85]{VHS_obs_spreadsheet_v3p0_GPS.pdf}
+\vspace*{-3.0cm}
+\caption{VHS-GPS observation requirements\label{figure:vhs_obs_gps}}
+\end{figure}
+
+
+\end{document}
+
+\begin{enumerate}
+
+\item Sep 2006 VHS proposal
+
+\item ESO VISTA SMP guidelines
+
+\item ESO Public Survey(EPS) Guidelines as available at: \hfill\break
+ http://www.eso.org/observing/webone.html.
+
+\item Policies for ESO Public Surveys developed to manage EPS with VST and VISTA from proposal preparation to the acceptance of data products into the ESO archive are described at: \hfill\break http://www.eso.org/observing/AboutSurveys.html
+
+\item The protocol for accepting data products, their ingestion into the ESO archive and the development of the interface for harvesting data products are currently described at:
+\hfill \break
+http://www.eso.org/observing/ps/VOS-RRD.pdf
+
+\item Special tools to carry out the EPS Phase 2 developed to simplify the Phase 2 preparation for surveys are the Survey Area Definition Tool (SADAT), which allows the user to efficiently tile a given survey area which is described at www.vista.ac.uk/observing/sadt/ and the upgrade of the P2PP capabilities at:
+www.eso.org/observing/p2pp/P2PP\_future.html 
+
+\item VISTA functionalities are described at www.vista.ac.uk , and the VISTA exposure time
+calculator is available via www.vista.ac.uk/observing/etc/.A glossary of specific terms for
+VISTA observations are available at http://www.vista.ac.uk/glossary.htm
+
+\end{enumerate}
+
+
+
+
+\end{document} 
+
+
